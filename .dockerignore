@@ -1,0 +1,29 @@
+# Ignorar arquivos e pastas desnecessárias
+.git
+.gitignore
+node_modules
+npm-debug.log
+yarn.lock
+vendor
+storage/logs
+storage/framework
+.env
+.env.*
+*.env
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# IDE/editor configs
+*.swp
+*.swo
+*.bak
+*.tmp
+*.DS_Store
+*.idea
+.vscode
+
+# Tests e arquivos locais
+phpunit.xml
+coverage

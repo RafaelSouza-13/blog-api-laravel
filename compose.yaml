@@ -1,0 +1,40 @@
+services:
+  laravel-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - mysql
+    networks:
+      - laravelblognet
+    env_file:
+      - .env
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: db_laravel
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 33062:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravelblognet
+
+volumes:
+  db_data:
+
+networks:
+  laravelblognet:
+    driver: bridge
