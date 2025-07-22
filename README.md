@@ -105,7 +105,6 @@ Siga as etapas abaixo para executar este projeto Laravel em sua máquina local:
    ```bash
    docker-compose up -d --build
 
-
 5. **Instale as dependências do Laravel(dentro do container)**
    ```bash
    docker exec -it blog_laravel-api_1 composer install
