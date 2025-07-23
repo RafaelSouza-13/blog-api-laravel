@@ -11,19 +11,23 @@ Que a força esteja com você!
 
 # 📖 Blog
 
-Projeto em laravel de uma API para gerenciar requisições HTTP de um blog.
+API desenvolvida com **Laravel 12** para gerenciar requisições HTTP de um blog. O projeto foi construído com foco em organização, escalabilidade e boas práticas de desenvolvimento backend.
+
+Para garantir um ambiente de desenvolvimento padronizado e isolado, utiliza **Docker** com todos os serviços necessários. As **migrations** são responsáveis por estruturar o banco de dados relacional **SQL**, enquanto **factories** e **seeders** facilitam a geração de dados para testes e desenvolvimento.
+
+O relacionamento entre as entidades é modelado utilizando o **Eloquent ORM**, explorando ao máximo os recursos oferecidos pelo framework. O controle de versões é feito com **Git**, garantindo rastreabilidade e colaboração eficiente no desenvolvimento.
 
 ## ⚙️ Tecnologias Utilizadas
 
-- PHP 8.3
+- PHP 8.2
 - Laravel 12
+- Docker
 - Composer
 - Git
-- Docker
 - SQL
 
 ## 💡 Funcionalidades
-- []
+- [] Login, logout
 - [] 
 
 ## 🏗️ Estrutura do Projeto
