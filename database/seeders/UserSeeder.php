@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
     {
         $tags = Tag::all();
         // Criar usuário com posts
-        User::factory()->count(14)->create()->each(function ($user) use ($tags) {
+        User::factory()->count(19)->create()->each(function ($user) use ($tags) {
             $user->posts()->saveMany(
-                Post::factory()->count(random_int(1, 5))->make()
+                Post::factory()->count(random_int(1, 10))->make()
             )->each(function ($post) use ($tags) {
                 // Associa de 1 a 3 tags aleatórias a cada post
                 $post->tags()->attach(
