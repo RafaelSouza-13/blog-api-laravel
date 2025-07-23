@@ -85,11 +85,11 @@ Siga as etapas abaixo para executar este projeto Laravel em sua máquina local:
 
 1. **Clone o repositório**  
    ```bash
-   git clone https://github.com/seu-usuario/blog.git
+   git clone git@github.com:RafaelSouza-13/blog-api-laravel.git
 
 2. **Acesse o diretório do projeto**
    ```bash
-   cd blog
+   cd blog-api-laravel
 
 
 3. **Configure as variáveis de ambiente**
