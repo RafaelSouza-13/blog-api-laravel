@@ -32,6 +32,19 @@ services:
     networks:
       - laravelblognet
 
+  phpmadmin:
+      image: phpmyadmin:latest
+      ports:
+        - 8080:80
+      environment:
+        PMA_HOST: mysql
+        PMA_PORT: 3306
+      depends_on:
+        - mysql
+      networks:
+        - laravelblognet
+    
+
 volumes:
   db_data:
 
