@@ -34,7 +34,7 @@ Abaixo está a organização das principais pastas e arquivos deste projeto Lara
 
 - **app/**  
   Contém a lógica de negócio da aplicação:
-  - `Http/`: Classes de controladores e middlewares.
+  - `Http/`: Classes de controladores e middlewares, formrequests.
   - `Models/`: Classes de modelos.
 
 - **bootstrap/**  
@@ -52,19 +52,9 @@ Abaixo está a organização das principais pastas e arquivos deste projeto Lara
 - **public/**  
   Pasta pública acessível pela web. Contém o `index.php` e os assets públicos.
 
-- **resources/**  
-  Recursos da aplicação:
-  - `views/`: Templates Blade.
-    - `password/`: Contem o corpo de texto do email enviado para recuperação de senha.
-  - `css/`: Arquivos CSS que contém o tailwind e algumas classes CSS já configuradas.
-  - `js/`: Arquivos JavaScript.
-    - `Components/`: Arquivos de componentes vue.
-    - `Layout/`: Arquivos de layouts das páginas.
-    - `Pages/`: Arquivos das páginas da aplicação.
-    - `app.js`: Ponto principal de entrada para o javascript.
 - **routes/**  
   Definições de rotas:
-  - `web.php`: Rotas para o ambiente web.
+  - `api.php`: Rotas para o ambiente de API, com respostas em JSON.
 
 - **storage/**  
   Arquivos gerados ou manipulados pela aplicação (logs, cache, uploads).
@@ -122,6 +112,8 @@ Siga as etapas abaixo para executar este projeto Laravel em sua máquina local:
     docker exec -it blog_laravel-api_1 php artisan db:seed
 
 Agora você pode acessar o projeto em `http://localhost:8000`.
+
+Agora você pode acessar o banco de dados utilizando phpmyadmin, com as credênciais definidas no compose.yaml, em `http://localhost:8080`.
 
 ## 🛡️ License
 
