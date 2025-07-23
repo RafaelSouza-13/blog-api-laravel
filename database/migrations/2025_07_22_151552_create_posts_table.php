@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('title');
             $table->text('content');
-            $table->string('cover_image')->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->string('cover_image')->default('default.jpg');
+            $table->timestamp('createdAt')->useCurrent();
+            $table->timestamp('updatedAt')->useCurrentOnUpdate();
             $table->enum('status', ['draft', 'published'])->default('draft');
         });
     }
