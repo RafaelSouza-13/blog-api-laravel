@@ -41,7 +41,7 @@ class AuthController extends Controller
         return response()->json($data, 200);
     }
 
-    public function verify(Request $request)
+    public function validate(Request $request)
     {
         $user = $request->user();
         if (!$user) {

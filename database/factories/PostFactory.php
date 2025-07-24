@@ -21,7 +21,7 @@ class PostFactory extends Factory
             'slug' => $this->faker->slug(),
             'user_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
             'title' => $this->faker->sentence(),
-            'content' => $this->faker->paragraph(),
+            'body' => $this->faker->paragraph(),
             'createdAt' => now(),
             'updatedAt' => now(),
             'status' => $this->faker->randomElement(['draft', 'published']),

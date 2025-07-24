@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('title');
-            $table->text('content');
+            $table->text('body');
             $table->string('cover_image')->default('default.jpg');
             $table->timestamp('createdAt')->useCurrent();
             $table->timestamp('updatedAt')->useCurrentOnUpdate();

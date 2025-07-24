@@ -115,6 +115,10 @@ Siga as etapas abaixo para executar este projeto Laravel em sua máquina local:
     ```bash
     docker exec -it blog_laravel-api_1 php artisan db:seed
 
+9. **Comando para reiniciar o banco e executar o seed após**
+  ```bash
+  docker exec -it blog_laravel-api_1 php artisan migrate:refresh --seed
+
 Agora você pode acessar o projeto em `http://localhost:8000`.
 
 Agora você pode acessar o banco de dados utilizando phpmyadmin, com as credênciais definidas no compose.yaml, em `http://localhost:8080`.

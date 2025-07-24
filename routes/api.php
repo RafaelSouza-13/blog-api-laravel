@@ -10,4 +10,4 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/auth/signup', [AuthController::class, 'signup']);
 Route::post('/auth/signin', [AuthController::class, 'signin']);
-Route::post('/auth/verify', [AuthController::class, 'verify'])->middleware('auth:sanctum');
+Route::post('/auth/validate', [AuthController::class, 'validate'])->middleware('auth:sanctum');
