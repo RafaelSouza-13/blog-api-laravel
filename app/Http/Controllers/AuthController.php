@@ -24,7 +24,7 @@ class AuthController extends Controller
         ];
         return response()->json($data, 201);
     }
-    
+
     public function signin(SignInRequest $request){
         $data = $request->validated();
         $user = User::where('email', $data['email'])->first();
@@ -39,5 +39,15 @@ class AuthController extends Controller
             'token' => $token,
         ];
         return response()->json($data, 200);
+    }
+
+    public function verify(Request $request)
+    {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['message' => 'Usuário não autenticado'], 401);
+        }
+        $userData = $user->only(['id', 'name', 'email']);
+        return response()->json(['message' => 'Usuário autenticado', 'user' => $userData], 200);
     }
 }
