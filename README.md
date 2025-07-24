@@ -27,8 +27,8 @@ O relacionamento entre as entidades é modelado utilizando o **Eloquent ORM**, e
 - SQL
 
 ## 💡 Funcionalidades
-- [] Login, logout
-- [] 
+- [x] SignUp
+- [x] SignIn
 
 ## 🏗️ Estrutura do Projeto
 
