@@ -14,6 +14,7 @@ class Post extends Model
     public $timestamps = false;
     const UPDATEDAT = 'updatedAt';
     const CREATEDAT = 'createdAt';
+    protected $hidden = ['pivot'];
 
     protected $fillable = [
         'slug',

@@ -9,6 +9,7 @@ class Tag extends Model
 {
     public $timestamps = false;
     protected $table = 'tags';
+    protected $hidden = ['pivot'];
     protected $fillable = [
         'name',
     ];

@@ -29,6 +29,7 @@ O relacionamento entre as entidades é modelado utilizando o **Eloquent ORM**, e
 ## 💡 Funcionalidades
 - [x] SignUp
 - [x] SignIn
+- [x] Validar usuário
 
 ## 🏗️ Estrutura do Projeto
 

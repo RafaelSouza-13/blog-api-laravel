@@ -7,6 +7,7 @@ use App\Http\Requests\SignUpRequest;
 use App\Http\Requests\SignInRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Exceptions\UserNotAuthenticatedException;
 class AuthController extends Controller
 {
     public function signup(SignUpRequest $request)
@@ -45,7 +46,7 @@ class AuthController extends Controller
     {
         $user = $request->user();
         if (!$user) {
-            return response()->json(['message' => 'Usuário não autenticado'], 401);
+            throw new UserNotAuthenticatedException();
         }
         $userData = $user->only(['id', 'name', 'email']);
         return response()->json(['message' => 'Usuário autenticado', 'user' => $userData], 200);
