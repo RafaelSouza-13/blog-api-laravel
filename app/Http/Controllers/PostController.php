@@ -33,13 +33,15 @@ class PostController extends Controller
         if (!$post) {
             return response()->json(['message' => 'Post não encontrado'], 404);
         }
-
-        $relatedPosts = Post::where('id', '!=', $post->id)
-                            ->whereHas('tags', function($query) use ($post) {
-                                $query->whereIn('id', $post->tags->pluck('id'));
-                            })
-                            ->with(['user:id,name,email', 'tags:name'])->paginate(3);
-
+        $tagsIds = $post->tags->pluck('id')->toArray();
+        $relatedPosts = Post::select('posts.id', 'slug', 'title', 'body', 'cover_image', 'user_id')
+            ->where('posts.id', '!=', $post->id)
+            ->join('posts_tags', 'posts.id', '=', 'posts_tags.post_id')
+            ->whereIn('posts_tags.tag_id', $tagsIds)
+            ->groupBy('posts.id', 'slug', 'title', 'body', 'cover_image', 'user_id')
+            ->orderByRaw('COUNT(posts_tags.tag_id) DESC')
+            ->with(['user:id,name,email', 'tags:id,name'])
+            ->paginate(3);
         return response()->json($relatedPosts, 200);
     }
 }
