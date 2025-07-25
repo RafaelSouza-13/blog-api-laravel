@@ -10,14 +10,14 @@ class PostController extends Controller
     public function findAll()
     {
         $posts = Post::select('id', 'slug', 'title', 'body', 'cover_image', 'createdAt', 'user_id')
-                    ->with(['user:id,name,email', 'tags:name'])
+                    ->with(['user:id,name,email', 'tags:id,name'])
                     ->paginate(10);
         return response()->json($posts, 200);
     }
 
     public function getPost($slug){
         $post = Post::where('slug', $slug)
-                    ->with(['user:id,name,email', 'tags:name'])
+                    ->with(['user:id,name,email', 'tags:id,name'])
                     ->firstOrFail();
         if (!$post) {
             return response()->json(['message' => 'Post não encontrado'], 404);

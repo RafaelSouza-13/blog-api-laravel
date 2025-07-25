@@ -32,6 +32,7 @@ O relacionamento entre as entidades é modelado utilizando o **Eloquent ORM**, e
 - [x] Validar usuário
 - [x] Busca paginada de posts
 - [x] Busca de post por slug
+- [x] Busca de posts relacionados pela tag
 
 ## 🏗️ Estrutura do Projeto
 
