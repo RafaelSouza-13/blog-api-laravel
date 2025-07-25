@@ -38,8 +38,8 @@ class PostController extends Controller
                             ->whereHas('tags', function($query) use ($post) {
                                 $query->whereIn('id', $post->tags->pluck('id'));
                             })
-                            ->with(['user:id,name,email', 'tags:name'])->get();
-                            
+                            ->with(['user:id,name,email', 'tags:name'])->paginate(3);
+
         return response()->json($relatedPosts, 200);
     }
 }
