@@ -11,9 +11,9 @@ class PostController extends Controller
     {
         $posts = Post::select('id', 'slug', 'title', 'body', 'cover_image', 'createdAt', 'user_id')
                     ->with(['user:id,name,email', 'tags:name'])
-                    ->get();
+                    ->paginate(10);
         
-        // $posts = Post::with('user')->get();
+        
         return response()->json($posts, 200);
 
     }
