@@ -15,6 +15,15 @@ class PostController extends Controller
         
         
         return response()->json($posts, 200);
+    }
 
+    public function getPost($slug){
+        $post = Post::where('slug', $slug)
+                    ->with(['user:id,name,email', 'tags:name'])
+                    ->firstOrFail();
+        if (!$post) {
+            return response()->json(['message' => 'Post não encontrado'], 404);
+        }
+        return response()->json($post, 200);
     }
 }
