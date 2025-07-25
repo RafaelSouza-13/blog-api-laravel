@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
@@ -16,7 +17,12 @@ Route::prefix('auth')->group(function () {
     Route::post('/validate', [AuthController::class, 'validate'])->middleware('auth:sanctum');
 });
 
-// Rotas púbblicas
-Route::get('/posts', [PostController::class, 'findAll']);
+// Rotas públicas
+Route::get('/posts', [PostController::class, 'getPosts']);
 Route::get('/posts/{slug}', [PostController::class, 'getPost']);
 Route::get('/posts/{slug}/related', [PostController::class, 'getRelatedPosts']);
+
+// Rotas privadas
+ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
+    Route::get('/posts', [AdminController::class, 'getPosts']);
+});

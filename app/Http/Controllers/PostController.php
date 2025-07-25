@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
 class PostController extends Controller
 {
-    public function findAll()
+    public function getPosts()
     {
         $posts = Post::select('id', 'slug', 'title', 'body', 'cover_image', 'createdAt', 'user_id')
                     ->where('status', 'published')
