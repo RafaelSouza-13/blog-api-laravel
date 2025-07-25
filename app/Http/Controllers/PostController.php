@@ -4,21 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-
+use \Illuminate\Database\Eloquent\ModelNotFoundException;
 class PostController extends Controller
 {
     public function findAll()
     {
         $posts = Post::select('id', 'slug', 'title', 'body', 'cover_image', 'createdAt', 'user_id')
+                    ->where('status', 'published')
                     ->with(['user:id,name,email', 'tags:id,name'])
                     ->paginate(10);
         return response()->json($posts, 200);
     }
 
     public function getPost($slug){
-        $post = Post::where('slug', $slug)
+        try{
+            $post = Post::where('slug', $slug)
+                    ->where('status', 'published')
                     ->with(['user:id,name,email', 'tags:id,name'])
                     ->firstOrFail();
+        }catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Post não encontrado', 
+                'error' => $e->getMessage(),
+                'status' => 404,
+                'timestamp' => now()->toDateTimeString(),
+            ], 404);
+        }
+        
         if (!$post) {
             return response()->json(['message' => 'Post não encontrado'], 404);
         }
@@ -26,12 +38,18 @@ class PostController extends Controller
     }
 
     public function getRelatedPosts($slug){
-        $post = Post::where('slug', $slug)
+        try{
+            $post = Post::where('slug', $slug)
+                    ->where('status', 'published')
                     ->with(['user:id,name,email', 'tags:id,name'])
                     ->firstOrFail();
-
-        if (!$post) {
-            return response()->json(['message' => 'Post não encontrado'], 404);
+        }catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Post não encontrado', 
+                'error' => $e->getMessage(),
+                'status' => 404,
+                'timestamp' => now()->toDateTimeString(),
+            ], 404);
         }
         $tagsIds = $post->tags->pluck('id')->toArray();
         $relatedPosts = Post::select('posts.id', 'slug', 'title', 'body', 'cover_image', 'user_id')

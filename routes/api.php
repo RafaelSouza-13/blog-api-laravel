@@ -16,6 +16,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/validate', [AuthController::class, 'validate'])->middleware('auth:sanctum');
 });
 
+// Rotas púbblicas
 Route::get('/posts', [PostController::class, 'findAll']);
 Route::get('/posts/{slug}', [PostController::class, 'getPost']);
 Route::get('/posts/{slug}/related', [PostController::class, 'getRelatedPosts']);
