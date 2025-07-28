@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdminController extends Controller
@@ -52,4 +54,36 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Post deletado com sucesso'], 200);
     }
+
+    public function createPost(PostRequest $request){
+        $data = $request->validated();
+        $post = new Post();
+        $post->title = $data['title'];
+        $post->body = $data['body'];
+        $post->user_id = auth()->id();
+        $post->slug = $this->generateSlug($data['title']);
+        if($request->hasFile('cover_image')){
+            $file = $request->file('cover_image');
+            $originalName = $file->getClientOriginalName();
+            $filename = pathinfo($originalName, PATHINFO_FILENAME) . '-' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/covers'), $filename);
+            $post->cover_image = env('APP_URL') . '/uploads/covers/' . $filename;
+        }
+        if(isset($data['status'])) {
+            $post->status = $data['status'];
+        }
+        $post->updatedAt = now();
+        $post->save();
+
+        if(isset($data['tags'])) {
+            $post->tags()->sync($data['tags']);
+        }
+        $post->load(['user:id,name,email', 'tags:id,name']);
+        return response()->json(['post' => $post], 201);
+    }
+
+    public function generateSlug($title){
+        $slug = Str::slug($title). '-' . time();
+        return $slug;
+    }   
 }

@@ -27,4 +27,5 @@ Route::get('/posts/{slug}/related', [PostController::class, 'getRelatedPosts']);
     Route::get('/posts', [AdminController::class, 'getPosts']);
     Route::get('/posts/{slug}', [AdminController::class, 'getPost']);
     Route::delete('/posts/{slug}', [AdminController::class, 'deletePost']);
+    Route::post('/posts', [AdminController::class, 'createPost']);
 });
